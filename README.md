@@ -1,4 +1,4 @@
-Projeto Integrador - 5 semestre do grupo 6:
+Projeto Integrador - 5 semestre. Grupo 6:
 Filipe Mota
 Caio Cesar
 Thiago Luiz Fossa
