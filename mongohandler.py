@@ -8,7 +8,7 @@ class MongoHandler:
     #Metodo construtor da classe
     def __init__(self, connection_string = None, database_name = "test"):
         if connection_string is None:
-            self.connection_string = "..." #Inserir string de conexão do mongoDB
+            self.connection_string = 'mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/?retryWrites=true&w=majority&appName=LIA" #Inserir string de conexão do mongoDB'
         else:
             self.connection_string = connection_string
 
