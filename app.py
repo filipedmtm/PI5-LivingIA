@@ -16,7 +16,11 @@ def get_data():
 
 @app.route('/mongo')
 def get_connection():
-    handler.connect() #Está dando error.
+    try:
+        handler.connect()
+        return jsonify({"message": "Connection successful"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
