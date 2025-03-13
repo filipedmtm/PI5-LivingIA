@@ -22,5 +22,14 @@ def get_connection():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/mongo/get/lotes')
+def get_data_mongo():
+    try:
+        data = handler.get_collection("lotes")
+    except:
+        return jsonify({"error": "Error getting data"}), 500
+    finally:
+        return jsonify(data), 200
+
 if __name__ == '__main__':
     app.run(debug=True)
