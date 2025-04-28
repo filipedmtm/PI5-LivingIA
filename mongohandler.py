@@ -1,85 +1,74 @@
 import logging
 from pymongo import MongoClient
 
-#Modelo de query no mongo : db.collection.find({field:value}) -- pode ser find, insert, delete ou update
-
-#Classe MongoHandler para manipulação do banco de dados MongoDB
 class MongoHandler:
-    #Metodo construtor da classe
-    def __init__(self, connection_string = None, database_name = "test"):
+    def __init__(self, connection_string=None, database_name="LIA"):
         if connection_string is None:
-            self.connection_string = 'mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/?retryWrites=true&w=majority&appName=LIA' #Inserir string de conexão do mongoDB
+            self.connection_string = 'mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/?retryWrites=true&w=majority&appName=LIA'
         else:
             self.connection_string = connection_string
 
         self.database_name = database_name
+        self.client = MongoClient(self.connection_string)
+        self.db = self.client.get_database(self.database_name)
 
-    #Metodo de conexão com o banco de dados
     def connect(self):
-        return MongoClient(self.connection_string).get_database(self.database_name)
+        try:
+            self.db = MongoClient(self.connection_string).get_database(self.database_name)
+            return True
+        except Exception as e:
+            logging.error(f"Error connecting to MongoDB: {e}")
+            return False
 
+    def close_connection(self):
+        self.client.close()
 
     def insert(self, collection, data):
-        db = self.connect() #usa o metodo connect para criar um objeto db
-        if db is None or not collection in db.list_collection_names():
-            return False
+        if collection not in self.db.list_collection_names():
+            return None
         try:
-            db.get_collection(collection).insert_one(data) #insere um documento na coleção
-        except:
-            logging.error(f"Error inserting data into collection {collection}")
-            return False
-        finally:
-            db.close()
+            self.db.get_collection(collection).insert_one(data)
             return True
+        except Exception as e:
+            logging.error(f"Error inserting data into collection {collection}: {e}")
+            return None
 
-    def get_collection (self, collection):
-        db = self.connect()
-        if db is None or not collection in db.list_collection_names():
-            return False
+    def get_collection(self, collection):
+        if collection not in self.db.list_collection_names():
+            return None
         try:
-            exportedCollection = db.get_collection(collection).find()
-        except:
-            logging.error(f"Error getting data from collection {collection}")
-            return False
-        finally:
-            db.close()
-            return exportedCollection
+            return list(self.db.get_collection(collection).find())
+        except Exception as e:
+            logging.error(f"Error getting data from collection {collection}: {e}")
+            return None
 
     def get_data(self, collection, field, value):
-        db = self.connect()
-        if db is None or not collection in db.list_collection_names():
-            return False
+        if collection not in self.db.list_collection_names():
+            return None
         try:
-            exportedDatas = db.get_collection(collection).find({field:value})
-        except:
-            logging.error(f"Error getting data from collection {collection} with value: {value}")
-            return False
-        finally:
-            db.close()
-            return exportedDatas
+            return list(self.db.get_collection(collection).find({field: value}))
+        except Exception as e:
+            logging.error(f"Error getting data from collection {collection} with value {value}: {e}")
+            return None
 
     def delete_data(self, collection, field, value):
-        db = self.connect()
-        if db is None or not collection in db.list_collection_names():
-            return False
+        if collection not in self.db.list_collection_names():
+            return None
         try:
-            db.get_collection(collection).delete_one({field:value})
-        except:
-            logging.error(f"Error deleting data from collection {collection} with value: {value}")
-            return False
-        finally:
-            db.close()
+            self.db.get_collection(collection).delete_one({field: value})
             return True
+        except Exception as e:
+            logging.error(f"Error deleting data from collection {collection} with value {value}: {e}")
+            return None
 
     def update_data(self, collection, field, value, new_data):
-        db = self.connect()
-        if db is None or not collection in db.list_collection_names():
-            return False
+        if collection not in self.db.list_collection_names():
+            return None
         try:
-            db.get_collection(collection).update_one({field:value}, new_data)
-        except:
-            logging.error(f"Error updating data from collection {collection} - {field}: {value} with new data: {new_data}")
-            return False
-        finally:
-            db.close()
+            self.db.get_collection(collection).update_one({field: value}, {"$set": new_data})
             return True
+        except Exception as e:
+            logging.error(f"Error updating data in collection {collection} - {field}: {value} with new data: {new_data}: {e}")
+            return None
+        finally:
+            self.client.close()
