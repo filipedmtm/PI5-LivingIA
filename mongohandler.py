@@ -2,7 +2,7 @@ import logging
 from pymongo import MongoClient
 
 class MongoHandler:
-    def __init__(self, connection_string=None, database_name="LIA"):
+    def __init__(self, connection_string=None, database_name="living_datas"):
         if connection_string is None:
             self.connection_string = 'mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/?retryWrites=true&w=majority&appName=LIA'
         else:

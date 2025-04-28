@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import pandas as pd
 from mongohandler import MongoHandler
 
-handler = MongoHandler('mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/', 'LIA')
+handler = MongoHandler('mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/', 'living_datas')
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def get_connection():
 @app.route('/mongo/get/lotes')
 def get_data_mongo():
     try:
-        data = handler.get_collection("lotes")
+        data = str (handler.get_collection("lotes"))
         if data is None:
             return jsonify({"error": "Collection not found or empty"}), 404
         return jsonify(data), 200
