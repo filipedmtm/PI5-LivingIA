@@ -20,7 +20,7 @@ def get_connection():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/mongo/get/lotes')
-def get_data_mongo():
+def get_data_mongo_lotes():
     try:
         data = str (handler.get_collection("lotes"))
         if data is None:
@@ -28,6 +28,19 @@ def get_data_mongo():
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/mongo/get/apartamentos')
+def get_data_mongo_apartamentos():
+    try:
+        data = str (handler.get_collection("apartamentos"))
+        if data is None:
+            return jsonify({"error": "Collection not found or empty"}), 404
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+#@app.route('/mongo/load/apartamentos')
+#app.route('/mongo/load/lotes')
 
 if __name__ == '__main__':
     app.run(debug=True)
