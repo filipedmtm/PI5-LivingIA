@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
 import pandas as pd
 from mongohandler import MongoHandler
+from document import document
+from documents_list import list_of_documents
 
 handler = MongoHandler('mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/', 'living_datas')
 
@@ -39,8 +41,48 @@ def get_data_mongo_apartamentos():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-#@app.route('/mongo/load/apartamentos')
-#app.route('/mongo/load/lotes')
+@app.route('/mongo/insert/lotes')
+def insert_data_mongo_lotes():
+    try:
+        data = document(
+            valor="249.000,00",
+            localizacao="Centro - Americana",
+            tipologia="Loteamento",
+            area_m_quadrados="300",
+            preco_m="999"
+        )
+        data = data.to_dict()
+        handler.insert("lotes", data)
+        return jsonify({"message": "Data inserted successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/mongo/insert/apartamentos')
+def insert_data_mongo_apartamentos():
+    try:
+        data = document(
+            valor="1.500.000,00",
+            localizacao="Centro - Americana",
+            tipologia="Apartamento",
+            area_m_quadrados="100",
+            preco_m="15000"
+        )
+        data = data.to_dict()
+        handler.insert("apartamentos", data)
+        return jsonify({"message": "Data inserted successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/mongo/insert_all/lotes')
+def insert_all_data_mongo_lotes():
+    try:
+        for i in range(len(list_of_documents)):
+            data = list_of_documents[i].to_dict()
+            handler.insert("lotes", data)
+
+        return jsonify({"message": "Data inserted successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
