@@ -1,4 +1,4 @@
-class document:
+class Document:
     def __init__(self, valor, localizacao, tipologia, area_m_quadrados, preco_m):
         self.valor = valor
         self.localizacao = localizacao
