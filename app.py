@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import pandas as pd
 from mongohandler import MongoHandler
 from document import Document
-from documents_list import list_of_documents_lotes #, list_of_documents_apartamentos
+from documents_list import list_of_documents_lotes, list_of_documents_apartamentos
 
 handler = MongoHandler('mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/', 'living_datas')
 
@@ -79,6 +79,17 @@ def insert_all_data_mongo_lotes():
         for i in range(len(list_of_documents_lotes)):
             data = list_of_documents_lotes[i].to_dict()
             handler.insert("lotes", data)
+
+        return jsonify({"message": "Data inserted successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/mongo/insert_all/apartamentos')
+def insert_all_data_mongo_apartamentos():
+    try:
+        for i in range(len(list_of_documents_apartamentos)):
+            data = list_of_documents_apartamentos[i].to_dict()
+            handler.insert("apartamentos", data)
 
         return jsonify({"message": "Data inserted successfully"}), 201
     except Exception as e:
