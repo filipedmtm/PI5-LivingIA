@@ -1,4 +1,95 @@
 from document import Document
-list_of_documents_lotes = [Document("249.000,00", "Centro - Americana", "lotes", "300", "999"),
-                           Document("1.500.000,00", "Centro - Americana","lotes", "100", "15000")
-                           ]
+list_of_documents_lotes = [
+    Document("180.000,00", "Jardim Bertoni - Americana", "lotes", "207", "869.57"),
+    Document("190.000,00", "Parque São Jerônimo - Americana", "lotes", "264", "719.70"),
+    Document("200.000,00", "Jardim América - Americana", "lotes", "220", "909.09"),
+    Document("150.000,00", "Bairro Pacaembu - Americana", "lotes", "125", "1200.00"),
+    Document("245.000,00", "Residencial Vale das Nogueiras - Americana", "lotes", "300", "816.67"),
+    Document("320.000,00", "Fazenda Santa Lúcia - Americana", "lotes", "530", "603.77"),
+    Document("260.000,00", "Balneário Riviera - Americana", "lotes", "440", "590.91"),
+    Document("160.000,00", "Jardim das Orquídeas - Americana", "lotes", "150", "1066.67"),
+    Document("700.000,00", "Residencial Vale das Nogueiras - Americana", "lotes", "1100", "636.36"),
+    Document("192.000,00", "Jardim Amélia - Americana", "lotes", "192", "1000.00"),
+    Document("270.000,00", "Santa Cecília - Paulínia", "lotes", "300", "900.00"),
+    Document("350.000,00", "Vila Monte Alegre - Paulínia", "lotes", "200", "1750.00"),
+    Document("220.000,00", "São Bento - Paulínia", "lotes", "200", "1100.00"),
+    Document("360.000,00", "Jardim Fortaleza - Paulínia", "lotes", "300", "1200.00"),
+    Document("260.000,00", "Parque Brasil 500 - Paulínia", "lotes", "250", "1040.00"),
+    Document("160.000,00", "João Aranha - Paulínia", "lotes", "200", "800.00"),
+    Document("440.000,00", "Boa Esperança - Paulínia", "lotes", "343", "1283.67"),
+    Document("170.000,00", "Recanto dos Dourados - Campinas", "lotes", "250", "680.00"),
+    Document("960.000,00", "Jardim Conceição - Campinas", "lotes", "480", "2000.00"),
+    Document("150.000,00", "Residencial Campo Florido - Campinas", "lotes", "120", "1250.00"),
+    Document("225.000,00", "Jardim Ibirapuera - Campinas", "lotes", "200", "1125.00"),
+    Document("900.000,00", "Jardim Conceição - Campinas", "lotes", "450", "2000.00"),
+    Document("725.000,00", "Loteamento Residencial Arborais - Campinas", "lotes", "420", "1726.19"),
+    Document("275.000,00", "Jardim Dom Vieria - Campinas", "lotes", "300", "916.67"),
+    Document("600.000,00", "Joaquim Edídio - Campinas", "lotes", "600", "1000.00"),
+    Document("1.500.000,00", "Loteamento Residencial Entre Verdes - Campinas", "lotes", "1400", "1071.43"),
+    Document("650.000,00", "Fazenda Pau D'Alho - Campinas", "lotes", "400", "1625.00"),
+    Document("845.000,00", "Loteamento Residencial Pedra Alta - Campinas", "lotes", "1055", "800.95"),
+    Document("2.500.000,00", "Bairro das Palmeiras - Campinas", "lotes", "760", "3289.47"),
+    Document("385.000,00", "Betel - Paulínia", "lotes", "300", "1283.33"),
+    Document("200.000,00", "São Bento - Paulínia", "lotes", "223", "896.86"),
+    Document("309.000,00", "Jardim Dona Judith - Americana", "lotes", "300", "1.030,00"),
+    Document("110.000,00", "Parque Industrial Jair Faraone Zanaga 3 - Americana", "lotes", "220", "500,00"),
+    Document("285.000,00", "Remanso Azul - Americana", "lotes", "320", "890,63"),
+    Document("100.000,00", "Jardim da Mata - Americana", "lotes", "169", "591,72"),
+    Document("398.000,00", "Parque Bom Retiro - Paulínia", "lotes", "299", "1.331,10"),
+    Document("424.000,00", "Parque Brasil 500 - Paulínia", "lotes", "300", "1.413,33"),
+    Document("480.000,00", "Parque Bom Retiro - Paulínia", "lotes", "253", "1.896,44"),
+    Document("450.000,00", "Jardim Fortaleza - Paulínia", "lotes", "336", "1.339,29"),
+    Document("618.000,00", "Parque Brasil 500 - Paulínia", "lotes", "301", "2.052,99"),
+    Document("1.200.000,00", "Loteamento Residencial Entre Verdes (Sousas) - Campinas", "lotes", "1200", "1.000,00"),
+    Document("700.000,00", "Swiss Park - Campinas", "lotes", "360", "1.944,44"),
+    Document("450.000,00", "Parque das Universidades - Campinas", "lotes", "490", "918,37"),
+    Document("161.000,00", "Loteamento New Park - Campinas", "lotes", "126", "1.277,78"),
+    Document("1.500.000,00", "Parque Rural Fazenda Santa Cândida - Campinas", "lotes", "1000", "1.500,00"),
+    Document("2.955.000,00", "Loteamento Alphaville Campinas - Campinas", "lotes", "3396", "870,00")
+]
+
+
+############################################################################################################################################################
+
+
+list_of_documents_apartamentos = [
+    Document("287.000,00", "Conserva - Americana", "apartamento", "92", "3.119,57"),
+    Document("330.000,00", "Vila Rehder - Americana", "apartamento", "53", "6.226,42"),
+    Document("230.000,00", "Parque Universitário - Americana", "apartamento", "60", "3.833,33"),
+    Document("215.000,00", "Residencial Europa - Americana", "apartamento", "50", "4.300,00"),
+    Document("789.000,00", "Centro - Americana", "apartamento", "113", "6.982,30"),
+    Document("670.000,00", "Jardim América - Paulínia", "apartamento", "77", "8.701,30"),
+    Document("528.000,00", "Santa Terezinha - Paulínia", "apartamento", "60", "8.800,00"),
+    Document("890.000,00", "Morumbi - Paulínia", "apartamento", "83", "10.722,89"),
+    Document("850.000,00", "Morumbi - Paulínia", "apartamento", "93", "9.139,78"),
+    Document("842.000,00", "Santa Terezinha - Paulínia", "apartamento", "83", "10.144,58"),
+    Document("650.000,00", "Balneário Tropical - Paulínia", "apartamento", "80", "8.125,00"),
+    Document("498.000,00", "Balneário Tropical - Paulínia", "apartamento", "80", "6.225,00"),
+    Document("510.000,00", "Balneário Tropical - Paulínia", "apartamento", "80", "6.375,00"),
+    Document("765.000,00", "Jardim Ypê - Paulínia", "apartamento", "86", "8.895,35"),
+    Document("920.000,00", "Jardim América - Paulínia", "apartamento", "90", "10.222,22"),
+    Document("580.000,00", "Morumbi - Paulínia", "apartamento", "82", "7.073,17"),
+    Document("390.000,00", "Parque Bom Retiro - Paulínia", "apartamento", "60", "6.500,00"),
+    Document("560.000,00", "Morumbi - Paulínia", "apartamento", "85", "6.588,24"),
+    Document("500.000,00", "Morumbi - Paulínia", "apartamento", "58", "8.620,69"),
+    Document("649.000,00", "Santa Terezinha - Paulínia", "apartamento", "69", "9.405,80"),
+    Document("570.000,00", "Jardim dos Calegaris - Paulínia", "apartamento", "77", "7.402,60"),
+    Document("895.000,00", "Morumbi - Paulínia", "apartamento", "83", "10.783,13"),
+    Document("668.000,00", "Santa Terezinha - Paulínia", "apartamento", "70", "9.542,86"),
+    Document("750.000,00", "Jardim Ypê - Paulínia", "apartamento", "86", "8.720,93"),
+    Document("780.000,00", "Jardim Ypê - Paulínia", "apartamento", "87", "8.965,52"),
+    Document("580.000,00", "Cambuí - Campinas", "apartamento", "67", "8.656,72"),
+    Document("475.000,00", "Parque Residencial Vila União - Campinas", "apartamento", "160", "2.968,75"),
+    Document("215.000,00", "Residencial Europa - Americana", "apartamento", "50", "4.300,00"),
+    Document("330.000,00", "Vila Rehder - Americana", "apartamento", "53", "6.226,42"),
+    Document("789.000,00", "Centro - Americana", "apartamento", "113", "6.982,30"),
+    Document("230.000,00", "Parque Universitário - Americana", "apartamento", "60", "3.833,33"),
+    Document("199.000,00", "Parque São Jerônimo - Americana", "apartamento", "60", "3.316,67"),
+    Document("191.000,00", "Jardim Recanto - Americana", "apartamento", "63", "3.031,75"),
+    Document("230.000,00", "Centro - Americana", "apartamento", "95", "2.421,05"),
+    Document("370.000,00", "Vila Bertini - Americana", "apartamento", "88", "4.204,55")
+]
+
+
+
+
