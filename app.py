@@ -41,7 +41,7 @@ def get_data_mongo_apartamentos():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/mongo/insert/lotes')
+@app.route('/mongo/insert/lotes', methods=['POST'])
 def insert_data_mongo_lotes():
     try:
         data = Document(
@@ -57,7 +57,7 @@ def insert_data_mongo_lotes():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/mongo/insert/apartamentos')
+@app.route('/mongo/insert/apartamentos', methods=['POST'])
 def insert_data_mongo_apartamentos():
     try:
         data = Document(
@@ -73,7 +73,7 @@ def insert_data_mongo_apartamentos():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/mongo/insert_all/lotes')
+@app.route('/mongo/insert_all/lotes', methods=['POST'])
 def insert_all_data_mongo_lotes():
     try:
         for i in range(len(list_of_documents_lotes)):
@@ -84,7 +84,7 @@ def insert_all_data_mongo_lotes():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/mongo/insert_all/apartamentos')
+@app.route('/mongo/insert_all/apartamentos', methods=['POST'])
 def insert_all_data_mongo_apartamentos():
     try:
         for i in range(len(list_of_documents_apartamentos)):
