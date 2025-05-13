@@ -1,12 +1,15 @@
 from flask import Flask, jsonify
 import pandas as pd
-from mongohandler import MongoHandler
-from document import Document
-from documents_list import list_of_documents_lotes, list_of_documents_apartamentos
+from backend.handlers.mongo_handler import MongoHandler
+from backend.models.document import Document
+from backend.documents_list import list_of_documents_lotes, list_of_documents_apartamentos
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+
+app = Flask("Living-IA")
+CORS(app)
 
 handler = MongoHandler('mongodb+srv://filipedaniel2004:LIA123@lia.xqp0e.mongodb.net/', 'living_datas')
-
-app = Flask(__name__)
 
 @app.route('/data')
 def get_data():
@@ -94,6 +97,28 @@ def insert_all_data_mongo_apartamentos():
         return jsonify({"message": "Data inserted successfully"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+## Testando as rotas
+    
+USERS = [
+    {"name": "Test User", "email": "teste@teste.com", "password": "123456"}
+]
+
+@app.route('/auth/login', methods=['POST'])
+def login():
+    data = request.json
+    user = next((u for u in USERS if u["email"] == data["email"] and u["password"] == data["password"]), None)
+    if user:
+        return jsonify({"success": True, "user": {"name": user["name"], "email": user["email"]}})
+    return jsonify({"success": False, "message": "Usuário ou senha inválidos"}), 401
+
+@app.route('/auth/register', methods=['POST'])
+def register():
+    data = request.json
+    if any(u["email"] == data["email"] for u in USERS):
+        return jsonify({"success": False, "message": "Email já cadastrado"}), 400
+    USERS.append({"name": data["name"], "email": data["email"], "password": data["password"]})
+    return jsonify({"success": True})
 
 if __name__ == '__main__':
     app.run(debug=True)

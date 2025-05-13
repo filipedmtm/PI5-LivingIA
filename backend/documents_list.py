@@ -1,4 +1,5 @@
-from document import Document
+from backend.models.document import Document
+
 list_of_documents_lotes = [
     Document("180.000,00", "Jardim Bertoni - Americana", "lotes", "207", "869.57"),
     Document("190.000,00", "Parque São Jerônimo - Americana", "lotes", "264", "719.70"),
