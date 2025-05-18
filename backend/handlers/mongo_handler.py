@@ -23,9 +23,17 @@ class MongoHandler:
     def close_connection(self):
         self.client.close()
 
+    # def insert(self, collection, data):
+    #     if collection not in self.db.list_collection_names():
+    #         return None
+    #     try:
+    #         self.db.get_collection(collection).insert_one(data)
+    #         return True
+    #     except Exception as e:
+    #         logging.error(f"Error inserting data into collection {collection}: {e}")
+    #         return None
+
     def insert(self, collection, data):
-        if collection not in self.db.list_collection_names():
-            return None
         try:
             self.db.get_collection(collection).insert_one(data)
             return True
@@ -42,14 +50,26 @@ class MongoHandler:
             logging.error(f"Error getting data from collection {collection}: {e}")
             return None
 
+    # def get_data(self, collection, field, value):
+    #     if collection not in self.db.list_collection_names():
+    #         return None
+    #     try:
+    #         return list(self.db.get_collection(collection).find({field: value}))
+    #     except Exception as e:
+    #         logging.error(f"Error getting data from collection {collection} with value {value}: {e}")
+    #         return None
+
     def get_data(self, collection, field, value):
-        if collection not in self.db.list_collection_names():
-            return None
         try:
-            return list(self.db.get_collection(collection).find({field: value}))
+            col = self.db.get_collection(collection)
+            if col is None:
+                return []
+
+            result = list(col.find({field: value}))
+            return result
         except Exception as e:
-            logging.error(f"Error getting data from collection {collection} with value {value}: {e}")
-            return None
+            logging.error(f"Erro ao buscar dados da coleção {collection}: {e}")
+            return []
 
     def delete_data(self, collection, field, value):
         if collection not in self.db.list_collection_names():

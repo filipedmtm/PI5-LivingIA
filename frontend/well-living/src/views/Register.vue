@@ -97,8 +97,13 @@ const handleRegister = async () => {
   }
 
   try {
-    await register(form.value.name, form.value.email, form.value.password)
-    router.push('/dashboard')
+    const response = await register(form.value.name, form.value.email, form.value.password)
+
+    if (response.success) {
+      router.push('/dashboard')
+    } else {
+      alert('Cadastro falhou: ' + response.message)
+    }
   } catch (error: unknown) {
     console.error('Registration failed:', error)
     if (error instanceof Error) {

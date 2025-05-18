@@ -65,8 +65,13 @@ const form = ref({
 
 async function handleLogin() {
   try {
-    await login(form.value.email, form.value.password)
-    router.push('/dashboard')
+    const response = await login(form.value.email, form.value.password)
+
+    if (response.success) {
+      router.push('/dashboard')
+    } else {
+      alert('Login falhou: ' + response.message)
+    }
   } catch (error: unknown) {
     console.error('Erro no login:', error)
     if (error instanceof Error) {
