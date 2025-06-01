@@ -14,6 +14,9 @@ export default {
           50: '#F6E9DC',
         },
       },
+      fontFamily: {
+        sans: ['Manrope', 'ui-sans-serif', 'system-ui'], // seta Manrope como fonte padrão sans
+      },
     },
   },
   plugins: [],

@@ -26,10 +26,14 @@ def load_data(collection_name):
     return df
 
 def init_dashboard(flask_app):
+    external_stylesheets = [
+    "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
+]
     dash_app = Dash(
         __name__,
         server=flask_app,
         routes_pathname_prefix='/dash/',
+        external_stylesheets=external_stylesheets
     )
 
     TEAL = "#00797A"
@@ -39,7 +43,7 @@ def init_dashboard(flask_app):
 
     dash_app.layout = html.Div([
         html.H1("Dashboard Imobiliário com IA", style={
-            'textAlign': 'center', 'color': TEAL, 'margin': '20px', 'fontWeight': 'bold', 'fontFamily': 'Montserrat, Arial, sans-serif'
+            'textAlign': 'center', 'color': TEAL, 'margin': '20px', 'fontWeight': 'bold', 'fontFamily': 'Manrope, sans-serif'
         }),
 
         html.Div([
@@ -55,7 +59,7 @@ def init_dashboard(flask_app):
                     searchable=False,
                     clearable=False,
                 )
-            ], style={'width': '48%', 'padding': '20px', 'backgroundColor': BEGE}),
+            ], style={'width': '48%', 'padding': '20px', 'backgroundColor': BEGE, 'fontFamily': 'Manrope, sans-serif'}),
 
             html.Div([
                 html.Label("Selecione a Cidade:", style={'fontWeight': 'bold', 'color': TEAL}),

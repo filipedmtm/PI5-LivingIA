@@ -1,77 +1,83 @@
 <template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Criar sua conta
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Ou
-          <router-link to="/login" class="font-medium text-indigo-600 hover:text-indigo-500">
-            faça login se já tiver uma conta
-          </router-link>
-        </p>
+  <div class="flex flex-col md:flex-row min-h-screen w-full bg-orange-100 relative overflow-hidden">
+    <!-- Lado esquerdo -->
+    <div class="flex flex-col justify-center items-center md:w-1/2 w-full bg-teal-700 relative p-8">
+      <img class="size-62 left-[-20px] top-0 absolute" :src="WellLivingImage" alt="Well Living" />
+      <div class="text-white text-4xl md:text-5xl font-bold font-['Manrope'] text-center mb-4">
+        OLÁ, <br />SEJA BEM-VINDO!
       </div>
-      <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
-        <div class="rounded-md shadow-sm -space-y-px">
-          <div>
-            <label for="name" class="sr-only">Nome completo</label>
-            <input
-              id="name"
-              v-model="form.name"
-              name="name"
-              type="text"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Nome completo"
-            />
-          </div>
-          <div>
-            <label for="email" class="sr-only">Email</label>
-            <input
-              id="email"
-              v-model="form.email"
-              name="email"
-              type="email"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Email"
-            />
-          </div>
-          <div>
-            <label for="password" class="sr-only">Senha</label>
-            <input
-              id="password"
-              v-model="form.password"
-              name="password"
-              type="password"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Senha"
-            />
-          </div>
-          <div>
-            <label for="confirmPassword" class="sr-only">Confirmar senha</label>
-            <input
-              id="confirmPassword"
-              v-model="form.confirmPassword"
-              name="confirmPassword"
-              type="password"
-              required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Confirmar senha"
-            />
-          </div>
+      <div class="text-white text-2xl md:text-3xl font-medium font-['Manrope'] text-center mb-8">
+        Faça login ou cadastre-se para desfrutar do melhor.
+      </div>
+      <router-link to="/login" class="cursor-pointer">
+        <div class="bg-orange-100 rounded-3xl py-4 px-8 text-stone-900 text-2xl md:text-3xl font-bold font-['Manrope'] hover:bg-orange-200 transition">
+          Login
         </div>
+      </router-link>
+    </div>
 
-        <div>
-          <button
-            type="submit"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Cadastrar
-          </button>
-        </div>
+    <!-- Elemento gráfico grande -->
+    <img class="absolute opacity-10 w-[500px] md:w-[800px] lg:w-[1024px] top-10 left-0" :src="ElementoGrafico" alt="Elemento gráfico" />
+
+    <!-- Formulário -->
+    <div class="flex flex-col justify-center items-center md:w-1/2 w-full p-8 relative z-10">
+      <div class="text-center text-stone-900 text-3xl md:text-4xl font-bold font-['Manrope'] mb-6">
+        WELL LIVING
+      </div>
+      <div class="text-center text-stone-900 text-3xl md:text-4xl font-bold font-['Manrope'] mb-2">
+        Bem vindo!
+      </div>
+      <div class="text-center text-stone-900 text-xl md:text-2xl font-light font-['Manrope'] mb-8">
+        Preencha com suas informações:
+      </div>
+
+      <form class="space-y-6 w-full max-w-md" @submit.prevent="handleRegister">
+        <input
+          id="name"
+          v-model="form.name"
+          name="name"
+          type="text"
+          required
+          class="w-full border-b border-stone-500 bg-transparent text-stone-900 text-xl md:text-2xl font-normal font-['Manrope'] placeholder-stone-500 focus:outline-none py-2"
+          placeholder="Nome completo"
+        />
+
+        <input
+          id="email"
+          v-model="form.email"
+          name="email"
+          type="email"
+          required
+          class="w-full border-b border-stone-500 bg-transparent text-stone-900 text-xl md:text-2xl font-normal font-['Manrope'] placeholder-stone-500 focus:outline-none py-2"
+          placeholder="Email"
+        />
+
+        <input
+          id="password"
+          v-model="form.password"
+          name="password"
+          type="password"
+          required
+          class="w-full border-b border-stone-500 bg-transparent text-stone-900 text-xl md:text-2xl font-normal font-['Manrope'] placeholder-stone-500 focus:outline-none py-2"
+          placeholder="Senha"
+        />
+
+        <input
+          id="confirmPassword"
+          v-model="form.confirmPassword"
+          name="confirmPassword"
+          type="password"
+          required
+          class="w-full border-b border-stone-500 bg-transparent text-stone-900 text-xl md:text-2xl font-normal font-['Manrope'] placeholder-stone-500 focus:outline-none py-2"
+          placeholder="Confirmar senha"
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-teal-700 rounded-3xl text-white text-xl md:text-2xl font-bold font-['Manrope'] py-4 hover:bg-teal-800 transition"
+        >
+          Cadastrar
+        </button>
       </form>
     </div>
   </div>
@@ -81,6 +87,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { register } from '../services/auth'
+import WellLivingImage from '../assets/wellLiving.png'
+import ElementoGrafico from '../assets/elementoGrafico.png'
 
 const router = useRouter()
 const form = ref({

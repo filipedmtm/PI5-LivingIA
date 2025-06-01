@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,5 +7,5 @@
 html, body, #app {
   height: 100%;
   margin: 0;
+  font-family: 'Manrope', sans-serif !important;
 }
-
